@@ -1,38 +1,78 @@
-﻿using System.Collections;
+﻿//SpriteChanges
+using System.Collections;
 using System.Collections.Generic;
+using System.Collections.Specialized;
+using System.Security.Cryptography;
+using System.Threading;
 using UnityEngine;
 
 public class SpriteChanger : MonoBehaviour
 {
     //Declare our variables
     public SpriteRenderer theRenderer;
-    public Color spriteColor;
 
     private Transform tf; //A variable to hold our Transform component
+
+    public float maxScale; // Create a variable for the max we can scale in one frame draw
+
 
     // Start is called before the first frame update
     void Start()
     {
-        //Change the color from our color picker so the alpha is 1
-        spriteColor.a = 1.0f;
+        //load the transform component into cariable
 
-        // As long as theRenderer has been set
-        if (theRenderer != null) 
-        {
-            //Change the color of our SpriteRenderer component
-            theRenderer.color = spriteColor;
-        }
+        Transform tf = GetComponent<Transform>();
 
-        //Get the transform component
-        tf = GetComponent<Transform>();
-        
     }
 
     // Update is called once per frame
     void Update()
     {
-  
-        tf.position += Vector3.up * 0.1f;
-        //tf.position = new Vector3(0, 0, 0);
+        if (Input.GetKey(KeyCode.UpArrow))
+        {
+            transform.position += Vector3.up * Time.deltaTime;
+        }
+
+        if (Input.GetKey(KeyCode.DownArrow))
+        {
+            transform.position += Vector3.down * Time.deltaTime;
+        }
+
+        if (Input.GetKey(KeyCode.LeftArrow))
+        {
+            transform.position += Vector3.left * Time.deltaTime;
+        }
+
+        if (Input.GetKey(KeyCode.RightArrow))
+        {
+            transform.position += Vector3.right * Time.deltaTime;
+        }
+
+        if (Input.GetKey(KeyCode.LeftShift) && Input.GetKey(KeyCode.UpArrow))
+        {
+            transform.Translate(Vector3.up * Time.deltaTime);
+        }
+
+        if (Input.GetKey(KeyCode.LeftShift) && Input.GetKey(KeyCode.DownArrow))
+        {
+            transform.Translate(Vector3.down * Time.deltaTime);
+        }
+
+        if (Input.GetKey(KeyCode.LeftShift) && Input.GetKey(KeyCode.LeftArrow))
+        {
+            transform.Translate(Vector3.left * Time.deltaTime);
+        }
+
+        if (Input.GetKey(KeyCode.LeftShift) && Input.GetKey(KeyCode.RightArrow))
+        {
+            transform.Translate(Vector3.right * Time.deltaTime);
+        }
+
+        if (Input.GetKey(KeyCode.Space))
+        {
+
+            gameObject.transform.position = Vector3.zero; // Vector3.zero is a preset value of (0,0,0)
+
+        }
     }
 }
