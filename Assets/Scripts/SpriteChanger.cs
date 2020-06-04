@@ -1,5 +1,4 @@
-﻿//SpriteChanges
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Security.Cryptography;
@@ -28,44 +27,46 @@ public class SpriteChanger : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey(KeyCode.UpArrow))
+        if (Input.GetKey(KeyCode.LeftShift))
         {
-            transform.position += Vector3.up * Time.deltaTime;
+            if (Input.GetKeyDown(KeyCode.UpArrow))
+            {
+                transform.position += Vector3.up;
+            }
+            if (Input.GetKeyDown(KeyCode.DownArrow))
+            {
+                transform.position += Vector3.down;
+            }
+            if (Input.GetKeyDown(KeyCode.LeftArrow))
+            {
+                transform.position += Vector3.left;
+            }
+            if (Input.GetKeyDown(KeyCode.RightArrow))
+            {
+                transform.position += Vector3.right;
+            }
         }
-
-        if (Input.GetKey(KeyCode.DownArrow))
+        else
         {
-            transform.position += Vector3.down * Time.deltaTime;
-        }
+            if (Input.GetKey(KeyCode.UpArrow))
+            {
+                transform.position += Vector3.up * Time.deltaTime;
+            }
 
-        if (Input.GetKey(KeyCode.LeftArrow))
-        {
-            transform.position += Vector3.left * Time.deltaTime;
-        }
+            if (Input.GetKey(KeyCode.DownArrow))
+            {
+                transform.position += Vector3.down * Time.deltaTime;
+            }
 
-        if (Input.GetKey(KeyCode.RightArrow))
-        {
-            transform.position += Vector3.right * Time.deltaTime;
-        }
+            if (Input.GetKey(KeyCode.LeftArrow))
+            {
+                transform.position += Vector3.left * Time.deltaTime;
+            }
 
-        if (Input.GetKey(KeyCode.LeftShift) && Input.GetKey(KeyCode.UpArrow))
-        {
-            transform.Translate(Vector3.up * Time.deltaTime);
-        }
-
-        if (Input.GetKey(KeyCode.LeftShift) && Input.GetKey(KeyCode.DownArrow))
-        {
-            transform.Translate(Vector3.down * Time.deltaTime);
-        }
-
-        if (Input.GetKey(KeyCode.LeftShift) && Input.GetKey(KeyCode.LeftArrow))
-        {
-            transform.Translate(Vector3.left * Time.deltaTime);
-        }
-
-        if (Input.GetKey(KeyCode.LeftShift) && Input.GetKey(KeyCode.RightArrow))
-        {
-            transform.Translate(Vector3.right * Time.deltaTime);
+            if (Input.GetKey(KeyCode.RightArrow))
+            {
+                transform.position += Vector3.right * Time.deltaTime;
+            }
         }
 
         if (Input.GetKey(KeyCode.Space))
